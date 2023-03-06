@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:untitled1/modules/connector.dart';
+import 'package:untitled1/base.dart';
+import 'package:untitled1/modules/createAccount/connector.dart';
 import 'package:untitled1/modules/createAccount/createAccount_vm.dart';
 
 class createAccountScreen extends StatefulWidget  {
@@ -11,26 +12,21 @@ class createAccountScreen extends StatefulWidget  {
   State<createAccountScreen> createState() => _createAccountScreenState();
 }
 
-class _createAccountScreenState extends State<createAccountScreen> implements connector{
+ class _createAccountScreenState extends BaseView<CreateAccount_vm,createAccountScreen>
+{
   GlobalKey<FormState> FormKey = GlobalKey<FormState>();
 
   var emailController = TextEditingController();
 
   var passController = TextEditingController();
 
-  CreateAccount_vm View_Model = CreateAccount_vm();
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    View_Model.connect=this;
-  }
+
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (BuildContext context) {
-        View_Model;
+       return viewModel;
       },
       child: Stack(
         children: [
@@ -60,6 +56,7 @@ class _createAccountScreenState extends State<createAccountScreen> implements co
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       TextFormField(
+                        textInputAction: TextInputAction.next,
                         decoration: InputDecoration(
                             hintText: "First Name",
                             border: OutlineInputBorder(
@@ -81,6 +78,7 @@ class _createAccountScreenState extends State<createAccountScreen> implements co
                         height: 5,
                       ),
                       TextFormField(
+                        textInputAction: TextInputAction.next,
                         decoration: InputDecoration(
                             hintText: "Last Name",
                             border: OutlineInputBorder(
@@ -102,6 +100,7 @@ class _createAccountScreenState extends State<createAccountScreen> implements co
                         height: 5,
                       ),
                       TextFormField(
+                        textInputAction: TextInputAction.next,
                         decoration: InputDecoration(
                             hintText: "User Name",
                             border: OutlineInputBorder(
@@ -123,6 +122,7 @@ class _createAccountScreenState extends State<createAccountScreen> implements co
                         height: 5,
                       ),
                       TextFormField(
+                        textInputAction: TextInputAction.next,
                         controller: emailController,
                         keyboardType: TextInputType.emailAddress,
                         decoration: InputDecoration(
@@ -151,6 +151,7 @@ class _createAccountScreenState extends State<createAccountScreen> implements co
                         height: 5,
                       ),
                       TextFormField(
+                        textInputAction: TextInputAction.next,
                         controller: passController,
                         keyboardType: TextInputType.text,
                         obscureText: true,
@@ -190,41 +191,18 @@ class _createAccountScreenState extends State<createAccountScreen> implements co
 
   void createAccount() async {
     if (FormKey.currentState!.validate()) {
-      View_Model.createAccount(emailController.text, passController.text);
+      viewModel.createAccount(emailController.text, passController.text);
     }
   }
 
-  @override
-  void hideLoadind() {
-    Navigator.pop(context);
-  }
 
   @override
-  void showLoading() {
-    showDialog(context: context, builder:(context) {
-      return AlertDialog(
-        title: Center(
-          child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-            CircularProgressIndicator(),
-            Text('Loading...'),
-          ]),
-        ),
-      );
-    },);
+  CreateAccount_vm init_VM() {
+   return CreateAccount_vm();
   }
 
-  @override
-  void showMessage(String message) {
-    showDialog(context: context, builder:(context) {
-      return AlertDialog(
-        title: Center(
-          child: Row(children: [
-            Text('$message'),
-          ]),
-        ),
-      );
-    },);
-  }
+
+
+
+
 }

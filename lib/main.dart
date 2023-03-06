@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled1/modules/createAccount/createAccount.dart';
+import 'package:untitled1/modules/login/loginScreen.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,6 +17,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      initialRoute: LoginScreen.routeName,
+      routes: {
+        createAccountScreen.routeName:(context) => createAccountScreen(),
+        LoginScreen.routeName:(context) => LoginScreen(),
+      },
       home:createAccountScreen(),
       debugShowCheckedModeBanner: false,
 
