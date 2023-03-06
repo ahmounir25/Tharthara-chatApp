@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled1/modules/createAccount/createAccount.dart';
+import 'package:untitled1/modules/homeScreen/HomeScreen.dart';
 import 'package:untitled1/modules/login/loginScreen.dart';
 
 void main() async{
@@ -21,8 +22,9 @@ class MyApp extends StatelessWidget {
       routes: {
         createAccountScreen.routeName:(context) => createAccountScreen(),
         LoginScreen.routeName:(context) => LoginScreen(),
+        homeScreen.routeName:(context) => homeScreen(),
       },
-      home:createAccountScreen(),
+      // home:createAccountScreen(),
       debugShowCheckedModeBanner: false,
 
     );

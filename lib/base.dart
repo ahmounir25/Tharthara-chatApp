@@ -22,6 +22,7 @@ abstract class BaseView< T extends BaseViewModel, T2 extends StatefulWidget >
     // TODO: implement initState
     super.initState();
     viewModel=init_VM();
+
   }
 
   @override
@@ -38,7 +39,7 @@ abstract class BaseView< T extends BaseViewModel, T2 extends StatefulWidget >
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 CircularProgressIndicator(),
-                Text('Loading...'),
+                Text('Loading...',style: TextStyle(fontSize: 12),),
               ]),
         ),
       );
@@ -51,7 +52,7 @@ abstract class BaseView< T extends BaseViewModel, T2 extends StatefulWidget >
       return AlertDialog(
         title: Center(
           child: Row(children: [
-            Text('$message'),
+            Text('$message',style: TextStyle(fontSize: 9),),
           ]),
         ),
       );

@@ -4,29 +4,41 @@ import 'package:provider/provider.dart';
 import 'package:untitled1/base.dart';
 import 'package:untitled1/modules/createAccount/connector.dart';
 import 'package:untitled1/modules/createAccount/createAccount_vm.dart';
+import 'package:untitled1/modules/homeScreen/HomeScreen.dart';
+import 'package:untitled1/modules/login/loginScreen.dart';
 
-class createAccountScreen extends StatefulWidget  {
+class createAccountScreen extends StatefulWidget {
   static const String routeName = 'createAccount';
 
   @override
   State<createAccountScreen> createState() => _createAccountScreenState();
 }
 
- class _createAccountScreenState extends BaseView<CreateAccount_vm,createAccountScreen>
-{
+class _createAccountScreenState
+    extends BaseView<CreateAccount_vm, createAccountScreen>
+    implements createAccountNavigator {
   GlobalKey<FormState> FormKey = GlobalKey<FormState>();
 
   var emailController = TextEditingController();
 
   var passController = TextEditingController();
 
+  var fNameController = TextEditingController();
+  var lNameController = TextEditingController();
+  var uNameController = TextEditingController();
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    viewModel.navigator = this; //important .......................
+  }
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (BuildContext context) {
-       return viewModel;
+        return viewModel;
       },
       child: Stack(
         children: [
@@ -56,6 +68,7 @@ class createAccountScreen extends StatefulWidget  {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       TextFormField(
+                        controller: fNameController,
                         textInputAction: TextInputAction.next,
                         decoration: InputDecoration(
                             hintText: "First Name",
@@ -78,6 +91,7 @@ class createAccountScreen extends StatefulWidget  {
                         height: 5,
                       ),
                       TextFormField(
+                        controller: lNameController,
                         textInputAction: TextInputAction.next,
                         decoration: InputDecoration(
                             hintText: "Last Name",
@@ -100,6 +114,7 @@ class createAccountScreen extends StatefulWidget  {
                         height: 5,
                       ),
                       TextFormField(
+                        controller: uNameController,
                         textInputAction: TextInputAction.next,
                         decoration: InputDecoration(
                             hintText: "User Name",
@@ -179,7 +194,21 @@ class createAccountScreen extends StatefulWidget  {
                           onPressed: () {
                             createAccount();
                           },
-                          child: Text('Sign UP'))
+                          child: Text('Sign UP')),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      InkWell(
+                          onTap: () {
+                            Navigator.pushReplacementNamed(
+                                context, LoginScreen.routeName);
+                          },
+                          child: Text(
+                            "Have an account ?",
+                            style: TextStyle(
+                                color: Colors.blue,
+                                decoration: TextDecoration.underline),
+                          )),
                     ],
                   )),
             ),
@@ -191,18 +220,18 @@ class createAccountScreen extends StatefulWidget  {
 
   void createAccount() async {
     if (FormKey.currentState!.validate()) {
-      viewModel.createAccount(emailController.text, passController.text);
+      viewModel.createAccount(fNameController.text, lNameController.text,
+          uNameController.text, emailController.text, passController.text);
     }
   }
 
-
   @override
   CreateAccount_vm init_VM() {
-   return CreateAccount_vm();
+    return CreateAccount_vm();
   }
 
-
-
-
-
+  @override
+  void goHome() {
+    Navigator.pushReplacementNamed(context, homeScreen.routeName);
+  }
 }
