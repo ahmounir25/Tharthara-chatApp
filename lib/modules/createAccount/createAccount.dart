@@ -2,10 +2,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:untitled1/base.dart';
+import 'package:untitled1/models/myUser.dart';
 import 'package:untitled1/modules/createAccount/connector.dart';
 import 'package:untitled1/modules/createAccount/createAccount_vm.dart';
 import 'package:untitled1/modules/homeScreen/HomeScreen.dart';
 import 'package:untitled1/modules/login/loginScreen.dart';
+
+// import '../../providers/userProvider.dart';
 
 class createAccountScreen extends StatefulWidget {
   static const String routeName = 'createAccount';
@@ -231,7 +234,7 @@ class _createAccountScreenState
   }
 
   @override
-  void goHome() {
+  void goHome(myUser user) {
     Navigator.pushReplacementNamed(context, homeScreen.routeName);
   }
 }

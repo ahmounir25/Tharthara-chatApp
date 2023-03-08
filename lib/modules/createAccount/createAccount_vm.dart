@@ -24,7 +24,7 @@ class CreateAccount_vm extends BaseViewModel<createAccountNavigator> {
           userName: userName);
       DataBaseUtils.addToFireStore(user);
       navigator?.hideDialog();
-      navigator?.goHome();
+      navigator?.goHome(user);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         navigator?.hideDialog();

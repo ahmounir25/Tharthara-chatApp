@@ -6,6 +6,7 @@ import 'package:untitled1/modules/createAccount/createAccount.dart';
 import 'package:untitled1/modules/homeScreen/HomeScreen.dart';
 import 'package:untitled1/modules/login/loginNavigator.dart';
 import 'package:untitled1/modules/login/login_vm.dart';
+// import 'package:untitled1/providers/userProvider.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -155,6 +156,7 @@ class _LoginScreenState extends BaseView<login_vm, LoginScreen>
 
   @override
   void goHome(myUser user) {
+
     Navigator.pushReplacementNamed(context, homeScreen.routeName);
   }
 }
