@@ -28,11 +28,11 @@ class login_vm extends BaseViewModel<loginNavigator> {
       if (e.code == 'user-not-found') {
         navigator?.hideDialog();
         navigator?.showMessage("No user found for that e mail.");
-        print('No user found for that email.');
+        // print('No user found for that email.');
       } else if (e.code == 'wrong-password') {
         navigator?.hideDialog();
         navigator?.showMessage("Wrong password provided for that user.");
-        print('Wrong password provided for that user.');
+        // print('Wrong password provided for that user.');
       }
     } catch (e) {
       print(e);

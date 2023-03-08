@@ -1,3 +1,4 @@
+
 class myUser {
   static  String collectionName='USERS';
   String id;

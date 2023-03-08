@@ -8,6 +8,8 @@ import 'package:untitled1/modules/createAccount/createAccount_vm.dart';
 import 'package:untitled1/modules/homeScreen/HomeScreen.dart';
 import 'package:untitled1/modules/login/loginScreen.dart';
 
+import '../../providers/userProvider.dart';
+
 // import '../../providers/userProvider.dart';
 
 class createAccountScreen extends StatefulWidget {
@@ -23,9 +25,7 @@ class _createAccountScreenState
   GlobalKey<FormState> FormKey = GlobalKey<FormState>();
 
   var emailController = TextEditingController();
-
   var passController = TextEditingController();
-
   var fNameController = TextEditingController();
   var lNameController = TextEditingController();
   var uNameController = TextEditingController();
@@ -235,6 +235,8 @@ class _createAccountScreenState
 
   @override
   void goHome(myUser user) {
+    var provider = Provider.of<UserProvider>(context, listen: false);
+    provider.user = user;
     Navigator.pushReplacementNamed(context, homeScreen.routeName);
   }
 }

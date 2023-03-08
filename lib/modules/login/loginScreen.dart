@@ -6,6 +6,8 @@ import 'package:untitled1/modules/createAccount/createAccount.dart';
 import 'package:untitled1/modules/homeScreen/HomeScreen.dart';
 import 'package:untitled1/modules/login/loginNavigator.dart';
 import 'package:untitled1/modules/login/login_vm.dart';
+
+import '../../providers/userProvider.dart';
 // import 'package:untitled1/providers/userProvider.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -156,7 +158,8 @@ class _LoginScreenState extends BaseView<login_vm, LoginScreen>
 
   @override
   void goHome(myUser user) {
-
+    var provider = Provider.of<UserProvider>(context, listen: false);
+    provider.user = user;
     Navigator.pushReplacementNamed(context, homeScreen.routeName);
   }
 }
