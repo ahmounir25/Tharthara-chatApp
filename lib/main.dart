@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:untitled1/modules/chat/chatScreen.dart';
 import 'package:untitled1/modules/createAccount/createAccount.dart';
 import 'package:untitled1/modules/createRoom/createRoomScreen.dart';
 import 'package:untitled1/modules/homeScreen/HomeScreen.dart';
@@ -55,6 +56,7 @@ class MyApp extends StatelessWidget {
         LoginScreen.routeName:(context) => LoginScreen(),
         homeScreen.routeName:(context) => homeScreen(),
         createRoomScreen.routeName:(context) => createRoomScreen(),
+        chatScreen.routeName:(context) => chatScreen(),
       },
       // home:createAccountScreen(),
       debugShowCheckedModeBanner: false,

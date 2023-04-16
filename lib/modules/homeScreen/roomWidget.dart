@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:untitled1/models/Room.dart';
+import 'package:untitled1/modules/chat/chatScreen.dart';
 
 class roomWidget extends StatelessWidget {
   // const roomWidget({Key? key}) : super(key: key);
@@ -17,25 +18,30 @@ class roomWidget extends StatelessWidget {
     else{
       txt='music';
     }
-    return Container(
-      decoration: BoxDecoration(
-        boxShadow:[
-          BoxShadow(
-          color: Colors.black26,
-          spreadRadius: 2,
-          blurRadius: 5,
-          blurStyle: BlurStyle.outer
-        )],
-        borderRadius: BorderRadius.circular(18)
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(18),
-        child: Column(
-          children: [
-            Expanded(child: Image.asset('assets/images/$txt.png')),
-            SizedBox(height: 5,),
-            Text(room.roomName),
-          ],
+    return InkWell(
+      onTap:  () {
+        Navigator.pushNamed(context, chatScreen.routeName,arguments:room);
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          boxShadow:[
+            BoxShadow(
+            color: Colors.black26,
+            spreadRadius: 2,
+            blurRadius: 5,
+            blurStyle: BlurStyle.outer
+          )],
+          borderRadius: BorderRadius.circular(18)
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(18),
+          child: Column(
+            children: [
+              Expanded(child: Image.asset('assets/images/$txt.png')),
+              SizedBox(height: 5,),
+              Text(room.roomName),
+            ],
+          ),
         ),
       ),
     );

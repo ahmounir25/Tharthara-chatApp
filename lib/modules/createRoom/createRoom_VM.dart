@@ -14,7 +14,6 @@ class createRoomVM extends BaseViewModel<createRoomNavigator> {
         roomDescription: roomDescription,
         catName: catName);
     DataBaseUtils.addRoomToFirebase(room).then((value) {
-      // navigator!.hideDialog();
       navigator!.roomCreated();
     }).catchError((error) {
       navigator!.showMessage(error.toString());
